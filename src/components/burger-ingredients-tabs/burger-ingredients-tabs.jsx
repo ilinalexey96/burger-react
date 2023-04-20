@@ -7,13 +7,13 @@ export function BurgerIngredientsTabs() {
     return (
         <div className={styles.listTab}>
             <Tab value="one" active={current === 'one'} onClick={setCurrent}>
-                One
+                Булки
             </Tab>
             <Tab value="two" active={current === 'two'} onClick={setCurrent}>
-                Two
+                Соусы
             </Tab>
             <Tab value="three" active={current === 'three'} onClick={setCurrent}>
-                Three
+                Начинки
             </Tab>
         </div>
     )

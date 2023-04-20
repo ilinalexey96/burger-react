@@ -9,6 +9,7 @@
     grid-template-columns: repeat(2, max-content);
     align-items: center;
     gap: 9px;
+    justify-content: center;
 }
 
 .subtitle {
