@@ -1,0 +1,48 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1c1c21;
+    max-width: 2100px;
+    min-height: 88px;
+    margin: 0 auto;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: 1fr 290px 1fr;
+    justify-content: space-between;
+    align-items: center;
+    width: 1280px;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.columns {
+    display: grid;
+    grid-template-columns: 178px 197px;
+    grid-template-rows: 56px;
+    gap: 8px;
+}
+
+.link {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 8px;
+    text-decoration: none;
+    align-content: center;
+    color: #f2f2f3;
+}
+
+.personal_account {
+    display: grid;
+    grid-template-columns: 207px;
+    grid-template-rows: 56px;
+    justify-content: end;
+}
