@@ -1,19 +1,20 @@
 export const config = {
-    baseUrl: 'https://norma.nomoreparties.space/api', // базовый путь к серверу
+    baseUrl: 'https://norma.nomoreparties.space/api', 
+    ingredients: '/ingredients',
+    order: '/orders',
     defaultHeaders: {
         'Content-Type': 'application/json'
     },
-    ingredients: '/ingredients', // эндпоинт ингредиентов
 };
 
 class Api {
-    constructor({ baseUrl, ingredients, defaultHeaders }) {
+    constructor({ baseUrl, ingredients, order, defaultHeaders }) {
         this._baseUrl = baseUrl;
         this._ingredientsEndpoint = ingredients;
+        this._orderEndpoint = order;
         this._defaultHeaders = defaultHeaders;
     }
-
-    // сборка конечного url 
+ 
     _makeUrl(endpoint) {
         return `${this._baseUrl}${endpoint}`;
     }
@@ -29,13 +30,24 @@ class Api {
             });
     };
 
-    // получатель ингредиентов
-    getIngredients() {
-        const options = { // объект опций для fetch
+    getBurgerIngredients() {
+        const options = {
             method: 'GET',
             headers: this._defaultHeaders
         };
         return fetch(this._makeUrl(this._ingredientsEndpoint), options)
+            .then(this._handleResponse);
+    }
+
+    getOrderDetails(idIngredientsList) {
+        const options = {
+            method: 'POST',
+            headers: this._defaultHeaders,
+            body: JSON.stringify({
+                ingredients: idIngredientsList
+            })
+        }
+        return fetch(this._makeUrl(this._orderEndpoint), options)
             .then(this._handleResponse);
     }
 }
