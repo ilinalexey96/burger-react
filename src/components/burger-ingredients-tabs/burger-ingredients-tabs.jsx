@@ -14,7 +14,7 @@ export function BurgerIngredientsTabs() {
     }
 
     return (
-        <div className={styles.tab_list}>
+        <div className={styles.listTab}>
             <Tab value="bun" active={current === 'bun'} onClick={setCurrent}>
                 Булки
             </Tab>
