@@ -5,8 +5,8 @@
 
 .nutrients {
     list-style-type: none;
-    display: grid;
     padding: 0;
+    display: grid;
     grid-template-columns: 120px 112px 112px 112px;
     justify-content: space-between;
     gap: 20px;
