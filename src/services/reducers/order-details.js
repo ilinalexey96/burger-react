@@ -1,17 +1,17 @@
 import { GET_ORDER_DETAILS_REQUEST, GET_ORDER_DETAILS_SUCCESS, GET_ORDER_DETAILS_ERROR } from "../actions/order-details";
 
-export const orderDetailsState = {
+export const initialState = {
     id: '',
     orderDetailsRequest: false,
     orderDetailsError: false
 }
 
-export const orderDetailsReducer = (state = orderDetailsState, action) => {
+export const orderDetailsReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_ORDER_DETAILS_REQUEST: {
             return {
                 ...state,
-                orderDetailsRequest: true
+                orderDetailsRequest: true,
             }
         }
         case GET_ORDER_DETAILS_SUCCESS: {
@@ -25,7 +25,7 @@ export const orderDetailsReducer = (state = orderDetailsState, action) => {
             return {
                 ...state,
                 orderDetailsRequest: false,
-                orderDetailsError: true,
+                orderDetailsError: true
             }
         }
         default: {

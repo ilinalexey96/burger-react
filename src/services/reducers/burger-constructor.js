@@ -6,17 +6,17 @@ import {
     CLEAR_CONSTRUCTOR
  } from "../actions/burger-constructor";
 
- const burgerConstructorState = {
+ const initialState = {
     mainList: [],
     bunsList: []
- }
+}
 
- export const burgerConstructorReducer = (state = burgerConstructorState, action) => {
+export const burgerConstructorReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_BUN: {
             return {
                 ...state,
-                bunsList: state.bunsList.find((item) => item.id === action.payload.id) ? [...state.bunsList] : [action.payload]
+                bunsList: state.bunsList.find((item) => item._id === action.payload._id) ? [...state.bunsList] : [action.payload]
             }
         }
         case ADD_INGREDIENT: {
@@ -44,7 +44,7 @@ import {
                     ...state.mainList.slice(end, start),
                     ...state.mainList.slice(start + 1),
                 ];
-            } else {
+            } else { // start < end
                 res = [
                     ...state.mainList.slice(0, start),
                     ...state.mainList.slice(start + 1, end + 1),
@@ -68,4 +68,4 @@ import {
             return state;
         }
     }
- }
+}
