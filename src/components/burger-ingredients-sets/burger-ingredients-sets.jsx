@@ -1,4 +1,4 @@
-import styles from './burger-ingredients-sets.module.css'
+import styles from './burger-ingredients-sets.module.css';
 import { useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BurgerIngredientsSet } from '../burger-ingredients-set/burger-ingredients-set';
@@ -28,9 +28,9 @@ export function BurgerIngredientsSets() {
 
     useEffect(() => {
         const headings = [
-            bunRef.current,
+            mainRef.current,
             sauceRef.current,
-            mainRef.current
+            bunRef.current
         ]
         const observer = new IntersectionObserver((headings) => {
             headings.forEach((heading) => {

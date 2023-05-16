@@ -1,20 +1,41 @@
-import styles from './burger-constructor.module.css'
+import React from 'react';
+import styles from './burger-constructor.module.css';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { OrderRegistration } from '../order-registration/order-registration';
 import { useDrop } from 'react-dnd';
 import { nanoid } from 'nanoid';
 import { setBun, addIngredient } from '../../services/actions/burger-constructor';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
 import { BurgerConstructorElement } from '../burger-constructor-element/burger-constructor-element';
 import { deleteIngredient } from '../../services/actions/burger-constructor';
-import { PropTypes } from 'prop-types';
+import { getOrderDetails } from '../../services/actions/order-details';
+import { Modal } from '../modal/modal';
+import { OrderDetails } from '../order-details/order-details';
 
 
-export function BurgerConstructor({ handleOrderClick }) {
+export function BurgerConstructor() {
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const main = useSelector(state => state.burgerConstructor.mainList)
     const buns = useSelector(state => state.burgerConstructor.bunsList)
+    const ingredients = useSelector(state => state.burgerIngredients.burgerIngredients);
+    const idIngredientsList = (ingredients.map((item) => item._id))
+    const authorization = useSelector((state) => state.userAuthorization.authorization);
+
+    const [openModal, setOpenModal] = React.useState(false);
+    const handleOrderClick = () => {
+        if (!authorization) {
+            history.replace('/login')
+        } else {
+            setOpenModal(!openModal)
+            dispatch(getOrderDetails(idIngredientsList))
+        }
+    }
+    const closeModal = () => {
+        setOpenModal(!openModal);
+    }
 
     const [, dropIngredient] = useDrop(() => ({
         accept: 'ingredient',
@@ -88,10 +109,11 @@ export function BurgerConstructor({ handleOrderClick }) {
             {buns.length > 0 ?
                 <OrderRegistration handleOrderClick={handleOrderClick} />
                 : null}
+            {openModal && (
+                <Modal onClose={closeModal}>
+                    <OrderDetails />
+                </Modal>
+            )}
         </section>
     )
-}
-
-BurgerConstructor.propTypes = {
-    handleOrderClick: PropTypes.func.isRequired
 }

@@ -1,4 +1,4 @@
-import { apiBurger } from "../../utils/api/api";
+import { apiBurger } from "../../utils/api";
 
 export const GET_USER_REQUEST = 'GET_USER_REQUEST';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';

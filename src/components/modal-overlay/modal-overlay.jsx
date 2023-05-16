@@ -1,5 +1,5 @@
 import styles from './modal-overlay.module.css';
-import { PropTypes } from 'prop-types'
+import { PropTypes } from 'prop-types';
 
 export function ModalOverlay({ onClose }) {
 

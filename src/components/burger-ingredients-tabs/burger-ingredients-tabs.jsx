@@ -1,8 +1,8 @@
-import React from "react";
-import styles from './burger-ingredients-tabs.module.css'
-import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import { setActiveTab, scrollIngredients } from "../../services/actions/burger-ingredients-scroll";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import styles from './burger-ingredients-tabs.module.css';
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import { setActiveTab, scrollIngredients } from '../../services/actions/burger-ingredients-scroll';
+import { useDispatch, useSelector } from 'react-redux';
 
 export function BurgerIngredientsTabs() {
 
@@ -14,7 +14,7 @@ export function BurgerIngredientsTabs() {
     }
 
     return (
-        <div className={styles.listTab}>
+        <div className={styles.tab_list}>
             <Tab value="bun" active={current === 'bun'} onClick={setCurrent}>
                 Булки
             </Tab>

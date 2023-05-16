@@ -1,14 +1,14 @@
-import { 
+import {
     SET_BUN,
     ADD_INGREDIENT,
     DELETE_INGREDIENT,
     MOVE_INGREDIENT,
     CLEAR_CONSTRUCTOR
- } from "../actions/burger-constructor";
+} from '../actions/burger-constructor';
 
- const initialState = {
-    mainList: [],
-    bunsList: []
+const initialState = {
+    mainList: [], // между булок в конструкторе
+    bunsList: [] // булки в конструкторе
 }
 
 export const burgerConstructorReducer = (state = initialState, action) => {

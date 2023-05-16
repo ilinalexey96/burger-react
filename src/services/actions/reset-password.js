@@ -1,4 +1,4 @@
-import { apiBurger } from "../../utils/api/api";
+import { apiBurger } from "../../utils/api";
 
 export const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
 export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';

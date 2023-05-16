@@ -1,14 +1,14 @@
-import { combineReducers } from "redux";
-import { burgerIngredientsReducer } from "./burger-ingredients";
-import { ingredientDetailsReducer } from "./ingredient-details";
-import { burgerConstructorReducer } from "./burger-constructor";
-import { orderDetailsReducer } from "./order-details";
-import { scrollIngredientsReducer } from "./burger-ingredients-scroll";
-import { userRegistrationReducer } from "./registration";
-import { forgotPasswordReducer } from "./forgot-password";
-import { resetPasswordReducer } from "./reset-password";
-import { userAuthorizationReducer } from "./authorization";
-import { profileReducer } from "./user";
+import { combineReducers } from 'redux';
+import { burgerIngredientsReducer } from './burger-ingredients';
+import { ingredientDetailsReducer } from './ingredient-details';
+import { burgerConstructorReducer } from './burger-constructor';
+import { orderDetailsReducer } from './order-details';
+import { scrollIngredientsReducer } from './burger-ingredients-scroll';
+import { userRegistrationReducer } from './registration';
+import { forgotPasswordReducer } from './forgot-password';
+import { resetPasswordReducer } from './reset-password';
+import { userAuthorizationReducer } from './authorization';
+import { profileReducer } from './user';
 
 export const rootReducer = combineReducers({
     burgerIngredients: burgerIngredientsReducer,
@@ -21,4 +21,4 @@ export const rootReducer = combineReducers({
     resetPassword: resetPasswordReducer,
     userAuthorization: userAuthorizationReducer,
     profile: profileReducer,
-})
+  })

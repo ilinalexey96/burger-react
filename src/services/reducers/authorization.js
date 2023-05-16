@@ -1,4 +1,4 @@
-import { getCookie } from "../../utils/cookies/cookies";
+import { getCookie } from "../../utils/cookies";
 import { USER_AUTHORIZATION_SUCCESS } from "../actions/authorization";
 import { USER_LOGOUT_SUCCESS } from "../actions/logout";
 

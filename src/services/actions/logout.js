@@ -1,5 +1,5 @@
-import { apiBurger } from "../../utils/api/api";
-import { deleteCookie } from "../../utils/cookies/cookies";
+import { apiBurger } from "../../utils/api";
+import { deleteCookie } from "../../utils/cookies";
 
 export const USER_LOGOUT_REQUEST = 'USER_LOGOUT_REQUEST';
 export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS';

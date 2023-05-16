@@ -1,4 +1,4 @@
-import { apiBurger } from "../../utils/api/api";
+import { apiBurger } from "../../utils/api";
 
 export const USER_REGISTRATION_REQUEST = 'USER_REGISTRATION_REQUEST';
 export const USER_REGISTRATION_SUCCESS = 'USER_REGISTRATION_SUCCESS';

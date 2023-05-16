@@ -1,14 +1,14 @@
 .order_details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .order_identifier {
-    text-shadow: 0 0 30px #4c4cff;
+  text-shadow: 0 0 30px #4c4cff;
 }
 
 .done {
-    width: 120px;
-    height: 120px;
+  width: 120px;
+  height: 120px;
 }
