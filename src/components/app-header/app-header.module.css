@@ -1,53 +1,111 @@
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #1C1C21;
-  max-width: 1920px;
+  background: #1C1C21;
   min-height: 88px;
+  max-width: 1920px;
+  box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
 }
 
-.navigation {
+.nav {
+  max-width: 1240px;
+  min-height: 88px;
   display: flex;
   justify-content: space-between;
-}
-
-.list {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-  display: grid;
-  grid-template-columns: 1fr 290px 1fr;
   align-items: center;
-  width: 1280px;
-  justify-content: space-between;
 }
 
-.columns {
-  display: grid;
-  grid-template-columns: 178px 197px;
-  grid-template-rows: 56px;
-  gap: 8px;
-}
-
-.link {
-  display: grid;
-  grid-template-columns: repeat(2, max-content);
-  gap: 8px;
+.constructor {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #8585AD;
+  min-width: 178px;
+  max-height: 56px;
   text-decoration: none;
-  align-content: center;
+}
+
+.icon {
+  width: 24px;
+  height: 22px;
+  transition: .2s ease-in-out;
+}
+
+.icon:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+.title {
+  display: inline-block;
+  margin: 0 0 0 9px;
+  transition: .2s ease-in-out;
+  color: #8585AD;
+}
+
+.active {
+  transition: .2s ease-in-out;
   color: #F2F2F3;
 }
 
-.link:hover {
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  border-radius: 40px;
+.active:hover {
+  color: #8585AD;
+  cursor: pointer;
 }
 
-.personal_account {
-  display: grid;
-  grid-template-columns: 207px;
-  grid-template-rows: 56px;
-  justify-content: end;
+
+
+.title:hover {
+  color: #F2F2F3;
+  opacity: .6;
+  cursor: pointer;
+}
+
+.order {
+  display: flex;
+  flex-direction: row;
+  margin-right: 8px;
+  padding: 16px 8px;
+  background: #1C1C21;
+  border-radius: 40px;
+  min-width: 178px;
+  max-height: 56px;
+  text-decoration: none;
+}
+
+.title {
+  display: inline-block;
+  margin: 0 0 0 9px;
+}
+
+.personal {
+  min-width: 159x;
+  max-height: 56px;
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  text-decoration: none;
+
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.logo {
+  justify-self: center;
+  margin-right: 212px;
 }

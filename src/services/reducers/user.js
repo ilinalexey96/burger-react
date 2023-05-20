@@ -1,32 +1,31 @@
-import { GET_USER_SUCCESS } from "../actions/user";
-import { UPDATE_USER_SUCCESS } from "../actions/user";
+import { GET_USER_INFO, PATCH_USER_INFO } from "../actions/user";
 
 const initialState = {
-  success: false,
-  user: {
-    email: '',
-    name: ''
-  },
+    success: false,
+    user: {
+        email: '',
+        name: ''
+    },
 };
 
-export const profileReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case GET_USER_SUCCESS: {
-      return {
-        ...state,
-        success: action.payload.success,
-        user: action.payload.user,
-      }
+export const getUserInfoReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case GET_USER_INFO: {
+            return {
+                ...state,
+                success: action.payload.success,
+                user: action.payload.user,
+            }
+        }
+        case PATCH_USER_INFO: {
+            return {
+                ...state,
+                success: action.payload.success,
+                user: action.payload.user,
+            }
+        }
+        default: {
+            return state;
+        }
     }
-    case UPDATE_USER_SUCCESS: {
-      return {
-        ...state,
-        success: action.payload.success,
-        user: action.payload.user,
-      }
-    }
-    default: {
-      return state;
-    }
-  }
 }

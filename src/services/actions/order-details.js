@@ -1,20 +1,40 @@
-import { apiBurger } from "../../utils/api";
-import { clearConstructor } from "./burger-constructor";
+import { baseUrl } from "../../utils/api";
+import { request } from "../../utils/request";
+import { clearConstructorList } from "./constructor";
 
-export const GET_ORDER_DETAILS_REQUEST = 'GET_ORDER_REQUEST';
-export const GET_ORDER_DETAILS_SUCCESS = 'GET_ORDER_SUCCESS';
-export const GET_ORDER_DETAILS_ERROR = 'GET_ORDER_ERROR';
+export const DELETE_ORDER = 'GET_ORDER_REQUEST';
+export const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
+export const GET_ORDER_FAILED = 'GET_ORDER_FAILED';
 
-export const getOrderSuccess = (number) => ({ type: GET_ORDER_DETAILS_SUCCESS, payload: number })
+const getOrderSucces = (id) => ({
+  type: GET_ORDER_SUCCESS,
+  payload: id
+});
 
-export function getOrderDetails(idIngredientsList) {
-    return (dispatch) =>
-        apiBurger.getOrderDetails(idIngredientsList)
-            .then(({ order: { number } }) => {
-                dispatch(getOrderSuccess(number));
-            })
-            .then(() => dispatch(clearConstructor()))
-            .catch((error) => {
-                console.log(error)
-            })
+export const deleteOrder = () => ({
+  type: DELETE_ORDER,
+})
+
+export const getOrderDetails = (idList) => {
+  const url = `${baseUrl}/orders`;
+  const options = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      ingredients: idList
+    })
+  };
+  return (dispatch) => {
+    console.log()
+    request(url, options)
+      .then(({ success, order: { number } }) => {
+        if (success) {
+          dispatch(getOrderSucces(number))
+        }
+      })
+      .then(() => {
+        dispatch(clearConstructorList())
+      })
+      .catch(console.warn)
+  }
 }

@@ -1,35 +1,72 @@
-import { apiBurger } from "../../utils/api";
+import { baseUrl } from "../../utils/api";
+import { request, refreshToken } from "../../utils/request";
+import { getCookie } from "../../utils/cookies";
 
-export const GET_USER_REQUEST = 'GET_USER_REQUEST';
-export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
-export const GET_USER_ERROR = 'GET_USER_ERROR';
+export const GET_USER_INFO = 'GET_USER_INFO';
+export const PATCH_USER_INFO = 'PATCH_USER_INFO';
 
-export const UPDATE_USER_REQUEST = 'UPDATE_USER_REQUEST';
-export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
-export const UPDATE_USER_ERROR = 'UPDATE_USER_ERROR';
+const getUserInfo = (payload) => ({
+    type: GET_USER_INFO,
+    payload
+});
 
-const getUserSuccess = (payload) => ({ type: GET_USER_SUCCESS, payload})
+const patchUserInfo = (payload) => ({
+    type: PATCH_USER_INFO,
+    payload
+});
 
-export function getUser() {
-    return (dispatch) =>
-        apiBurger.getProfile()
+export const getUserInfoThunk = () => {
+    const url = `${baseUrl}/auth/user`;
+    const options = {
+        headers: {
+            authorization: 'Bearer ' + getCookie('access'),
+            'Content-Type': 'application/json'
+        }
+    };
+
+    return (dispatch) => {
+        request(url, options)
             .then((data) => {
-                dispatch(getUserSuccess(data));
+                const { success } = data;
+                if (success) {
+                    dispatch(getUserInfo(data));
+                }
             })
-            .catch((error) => {
-                console.log(error)
+            .catch((err) => {
+                if (err) {
+                    refreshToken()
+                }
             })
+    }
 }
 
-const updateUserSuccess = (payload) => ({ type: UPDATE_USER_SUCCESS, payload })
+export const patchUserInfoThunk = (email, name, password) => {
+    const url = `${baseUrl}/auth/user`;
+    const options = {
+        method: 'PATCH',
+        headers: {
+            authorization: 'Bearer ' + getCookie('access'),
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email,
+            name,
+            password
+        })
+    };
 
-export function updateUser(name, email, password) {
-    return (dispatch) =>
-        apiBurger.updateProfile(name, email, password)
+    return (dispatch) => {
+        request(url, options)
             .then((data) => {
-                dispatch(updateUserSuccess(data));
+                const { success } = data;
+                if (success) {
+                    dispatch(patchUserInfo(data));
+                }
             })
-            .catch((error) => {
-                console.log(error)
+            .catch((err) => {
+                if (err) {
+                    refreshToken()
+                }
             })
+    }
 }

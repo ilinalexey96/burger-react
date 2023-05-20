@@ -1,39 +1,38 @@
-import {
-    GET_ORDER_DETAILS_REQUEST,
-    GET_ORDER_DETAILS_SUCCESS,
-    GET_ORDER_DETAILS_ERROR
-  } from '../actions/order-details'
-  
-  export const initialState = {
+import { DELETE_ORDER, GET_ORDER_SUCCESS, GET_ORDER_FAILED } from "../actions/order-details";
+
+const initialState = {
     id: '',
-    orderDetailsRequest: false,
-    orderDetailsError: false
-  }
-  
-  export const orderDetailsReducer = (state = initialState, action) => {
+    orderRequest: false,
+    orderSuccess: false,
+    orderFailed: false
+}
+
+export const orderDetailsReducer = (state = initialState, action) => {
     switch (action.type) {
-      case GET_ORDER_DETAILS_REQUEST: {
-        return {
-          ...state,
-          orderDetailsRequest: true,
+        case DELETE_ORDER: {
+            return {
+                ...state,
+                id: '',
+                orderSuccess: false
+            }
         }
-      }
-      case GET_ORDER_DETAILS_SUCCESS: {
-        return {
-          ...state,
-          orderDetailsError: false,
-          id: action.payload
+        case GET_ORDER_SUCCESS: {
+            return {
+                ...state,
+                orderRequest: false,
+                orderFailed: false,
+                orderSuccess: true,
+                id: action.payload
+            }
         }
-      }
-      case GET_ORDER_DETAILS_ERROR: {
-        return {
-          ...state,
-          orderDetailsRequest: false,
-          orderDetailsError: true
+        case GET_ORDER_FAILED: {
+            return {
+                orderFailed: true,
+                orderRequest: false
+            }
         }
-      }
-      default: {
-        return state;
-      }
+        default: {
+            return state
+        }
     }
-  }
+}

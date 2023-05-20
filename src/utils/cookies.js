@@ -19,16 +19,13 @@ export function setCookie(name, value, props) {
     }
   }
   document.cookie = updatedCookie;
-}
+} 
 
-// получение куки с помощью регулярного выражения
+// В этой функции получаем куку с помощью регулярного выражения
+
 export function getCookie(name) {
   const matches = document.cookie.match(
     new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)')
   );
   return matches ? decodeURIComponent(matches[1]) : undefined;
-}
-
-export function deleteCookie(name) {
-  setCookie(name, '')
-}
+} 

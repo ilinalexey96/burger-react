@@ -1,36 +1,44 @@
+import React from 'react';
 import styles from './ingredient-details.module.css';
 import { useSelector } from 'react-redux';
 
-export function IngredientDetails() {
-
-  const ingredient = useSelector(state => state.ingredientDetails.ingredientDetails) || JSON.parse(sessionStorage.getItem('ingredient'))
-  console.log (sessionStorage.getItem('ingredient'))
- 
+export default function IngredientDetails() {
+  const ingredient = useSelector(state => state.ingredientDetails.ingredientDetails)
   return (
-    <>
-      <h2 className={`${styles.title} text text_type_main-large mt-10 ml-10`}>Детали ингредиента</h2>
-      <div className={`${styles.ingredient_details} pl-25 pr-25`}>
-        <img className="ml-5 mr-5" src={ingredient.image_large} alt={ingredient.name} />
-        <p className={`${styles.subtitle} text text_type_main-medium mt-4`}>{ingredient.name}</p>
-        <ul className={`${styles.nutrients} mt-8 mb-15`}>
-          <li className={styles.nutrient}>
-            <p className={`${styles.text} text text_type_main-default text_color_inactive`}>Калории,ккал</p>
-            <p className="text text_type_digits-default text_color_inactive">{ingredient.calories}</p>
-          </li>
-          <li className={styles.nutrient}>
-            <p className={`${styles.text} text text_type_main-default text_color_inactive`}>Белки, г</p>
-            <p className="text text_type_digits-default text_color_inactive">{ingredient.proteins}</p>
-          </li>
-          <li className={styles.nutrient}>
-            <p className={`${styles.text} text text_type_main-default text_color_inactive`}>Жиры, г</p>
-            <p className="text text_type_digits-default text_color_inactive">{ingredient.fat}</p>
-          </li>
-          <li className={styles.nutrient}>
-            <p className={`${styles.text} text text_type_main-default text_color_inactive`}>Углеводы, г</p>
-            <p className="text text_type_digits-default text_color_inactive">{ingredient.carbohydrates}</p>
-          </li>
-        </ul>
+    ingredient && <div className={styles.ingredient}>
+      <h2 className={`${styles.title} text text_type_main-large`}>Детали ингредиента</h2>
+      <img className={styles.image}
+        id={ingredient._id}
+        src={ingredient.image}
+        alt={ingredient.name}
+      />
+      <h3 className={`${styles.subtitle} text text_type_main-medium`}>{ingredient.name}</h3>
+      <div className={styles.caption}>
+        <p className="text text_type_main-small">
+          Калории,ккал
+        </p>
+        <p className="text text_type_main-small">
+          Белки, г
+        </p>
+        <p className="text text_type_main-small">
+          Жиры, г
+        </p>
+        <p className="text text_type_main-small">
+          Углеводы, г
+        </p>
+        <p className="text text_type_digits-default">
+          {ingredient.calories}
+        </p>
+        <p className="text text_type_digits-default">
+          {ingredient.proteins}
+        </p>
+        <p className="text text_type_digits-default">
+          {ingredient.fat}
+        </p>
+        <p className="text text_type_digits-default">
+          {ingredient.carbohydrates}
+        </p>
       </div>
-    </>
+    </div>
   )
 }

@@ -1,18 +1,28 @@
-import { apiBurger } from "../../utils/api";
+import { baseUrl } from "../../utils/api";
+import { request } from "../../utils/request";
 
-export const FORGOT_PASSWORD_REQUEST = 'FORGOT_PASSWORD_REQUEST';
-export const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS';
-export const FORGOT_PASSWORD_ERROR = 'FORGOT_PASSWORD_ERROR';
+export const GET_PASSWORD_SUCCESS = 'GET_PASSWORD_SUCCESS';
 
-const forgotPasswordSuccess = (payload) => ({ type: FORGOT_PASSWORD_SUCCESS, payload })
+const getPasswordSuccess = (payload) => ({
+  type: GET_PASSWORD_SUCCESS,
+  payload
+})
 
-export function forgotPassword(email) {
-    return (dispatch) =>
-        apiBurger.forgot(email)
-            .then(({ success }) => {
-                dispatch(forgotPasswordSuccess(success));
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+export const getPasswordSuccessThunk = () => {
+  const url = `${baseUrl}/password-reset`;
+  const options = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email: ''
+    })
+  };
+  return (dispatch) => {
+    request(url, options)
+      .then(({ success, message }) => {
+        
+        dispatch(getPasswordSuccess(success));
+      })
+      .catch(console.warn);
+  }
 }

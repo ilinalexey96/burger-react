@@ -1,20 +1,15 @@
+import React from "react";
 import styles from './modal-overlay.module.css';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 
-export function ModalOverlay({ onClose }) {
+export function ModalOverlay({ onMouseDown }) {
 
-    const closeModalOverlay = (evt) => {
-        if (evt.target.classList.contains(styles.overlay)) {
-            onClose()
-        }
-    }
-
-    return (
-        <div className={styles.overlay} onClick={closeModalOverlay}>
-        </div>
-    )
+  return (
+    <div className={styles.overlay} onMouseDown={onMouseDown}>
+    </div>
+  )
 }
 
 ModalOverlay.propTypes = {
-    onClose: PropTypes.func.isRequired
+  onMouseDown: PropTypes.func.isRequired
 }
