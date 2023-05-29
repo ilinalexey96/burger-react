@@ -1,14 +1,22 @@
-import { combineReducers } from "redux";
-import { burgerIngredientsReducer } from "./burger-ingredients";
-import { ingredientDetailsReducer } from "./ingredient-details";
-import { burgerConstructorReducer } from "./burger-constructor";
-import { orderDetailsReducer } from "./order-details";
-import { scrollIngredientsReducer } from "./burger-ingredients-scroll";
+import { combineReducers } from 'redux';
+import { ingredientsReducer } from './ingredients';
+import { constructorReducer } from './constructor';
+import { ingredientDetailsReducer } from './ingredient-details';
+import { orderDetailsReducer } from './order-details';
+import { recoverPasswordReducer } from './forgot-password';
+import { resetPasswordReducer } from './reset-password';
+import { registerUserReducer } from './register';
+import { loginUserReducer } from './login';
+import { getUserInfoReducer } from './user';
 
 export const rootReducer = combineReducers({
-    burgerIngredients: burgerIngredientsReducer,
+    ingredients: ingredientsReducer,
+    constructorList: constructorReducer,
     ingredientDetails: ingredientDetailsReducer,
-    burgerConstructor: burgerConstructorReducer,
     orderDetails: orderDetailsReducer,
-    scrollIngredients: scrollIngredientsReducer
-})
+    recoverPassword: recoverPasswordReducer,
+    resetPassword: resetPasswordReducer,
+    user: registerUserReducer,
+    login: loginUserReducer,
+    info: getUserInfoReducer
+});

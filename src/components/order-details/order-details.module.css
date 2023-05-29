@@ -1,14 +1,31 @@
-.order_details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.order {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-top: 119px;
 }
 
-.order_identifier {
-    text-shadow: 0 0 30px #4c4cff;
+.image {
+  position: initial;
+  display: block;
+  max-width: 120px;
+  max-height: 120px;
+  align-self: center;
+  margin-bottom: 64px;
+  transition: all .1s ease-in;;
 }
 
-.done {
-    width: 120px;
-    height: 120px;
+.image:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+.subtitle {
+  margin: 32px 0 61px 0;
+}
+
+.message {
+  margin-top: 12px;
+  margin-bottom: 120px;
 }
