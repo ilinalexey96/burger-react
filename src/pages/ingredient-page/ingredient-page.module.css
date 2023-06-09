@@ -2,9 +2,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-  
-  .caption {
+}
+
+.caption {
     display: grid;
     row-gap: 8px;
     column-gap: 20px;
@@ -15,20 +15,20 @@
     align-self: center;
     flex-grow: 0;
     width: 520px;
-  }
-  
-  .title {
+}
+
+.title {
     text-align: center;
     margin: 132px 0 12px 0;
-  }
-  
-  .subtitle {
+}
+
+.subtitle {
     text-align: center;
     margin: 15px 0 38px 0;
-  }
-  
-  .image {
+}
+
+.image {
     width: 480px;
     height: 240px;
     align-self: center;
-  }
+}
