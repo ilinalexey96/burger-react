@@ -1,4 +1,4 @@
-import { baseUrl } from "../../utils/api";
+import { baseUrl } from "../../utils/constants";
 import { request } from "../../utils/request";
 import { setCookie, deleteCookie, getCookie } from "../../utils/cookies";
 import { AppDispatch, AppThunk } from "../../utils/types";
@@ -78,7 +78,8 @@ export const logoutUserThunk: AppThunk = () => {
         const { success } = data;
         if (success) {
           dispatch(logoutUser(success));
-          deleteCookie('access')
+          deleteCookie('access');
+          deleteCookie('refresh');
         }
       })
       .catch(console.warn)

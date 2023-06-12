@@ -1,4 +1,4 @@
-import { baseUrl } from "../../utils/api";
+import { baseUrl } from "../../utils/constants";
 import { request } from "../../utils/request";
 import { AppThunk, AppDispatch } from "../../utils/types";
 
@@ -20,7 +20,7 @@ const getPasswordSuccess = (payload: boolean): IGetPasswordSuccess => ({
 export const getPasswordSuccessThunk: AppThunk = () => {
   const url = `${baseUrl}/password-reset`;
   const options = {
-    method: 'POST' && 'GET',
+    method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       email: ''

@@ -1,4 +1,4 @@
-import { baseUrl } from "../../utils/api";
+import { baseUrl } from "../../utils/constants";
 import { TIngredient } from "../../utils/types";
 import { request } from "../../utils/request";
 import { AppThunk, AppDispatch } from "../../utils/types";

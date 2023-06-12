@@ -1,55 +1,76 @@
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import React, { FC } from 'react';
+import styles from './feed-page.module.css';
 import { useSelector } from '../../utils/hooks';
-import styles from './feed-page.module.css'
+import { useDispatch } from '../../utils/hooks';
+import { wsConnectionStart, wsConnectionClosed } from '../../services/actions/socket';
+import { OrderCard } from '../../components/order-card/order-card';
+import { useLocation } from 'react-router-dom';
+import { feedUrl } from '../../utils/constants';
 
 export const FeedPage: FC = () => {
-    const { constructorList: data } = useSelector(state => state.constructorList);
-    return (
-        <main className={styles.main}>
-            <section className={styles.feed}>
-                <p className={`${styles.title}text text_type_main-large mt-10 mb-5`} >Лента заказов</p>
-                <div className={styles.scroll}>
-                    <li className={styles.card}>
-                        <div className={styles.header}>
-                            <p className={styles.id}>#034535</p>
-                            <p className={styles.timestamp}>Сегодня, 16:20 i-GMT+3</p>
-                        </div>
-                        <p className={styles.name}>Death Star Starship Main бургер</p>
-                        <div className={styles.ingredients}>
-                            {
-                                data.map(element => {
-                                    return <div className={styles.icon}>
-                                        <img className={styles.image} src={element.image_mobile} alt={element.name} />
-                                    </div>
-                                })
-                            }
-                            <p className={styles.price}>480</p>
-                            <CurrencyIcon type='primary' />
-                        </div>
-                    </li>
-                </div>
-            </section>
-            <section className={styles.board}>
-                <div className={styles.orders}>
-                    <div className={styles.done}>
-                        <p>Готовы:</p>
-                        <li className={styles.doneId}>034533</li>
-                    </div>
-                    <div className={styles.work}>
-                        <p>В работе:</p>
-                        <li>034538</li>
-                    </div>
-                </div>
-                <li className={styles.completed}>
-                    <p className="text text_type_main-medium">Выполнено за все время:</p>
-                    <p className={`${styles.count} text text_type_digits-large`}>28 752</p>
-                </li>
-                <li className={styles.completed}>
-                    <p className="text text_type_main-medium">Выполнено за сегодня:</p>
-                    <p className={`${styles.count} text text_type_digits-large`}>138</p>
-                </li>
-            </section>
-        </main>
-    );
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const { orders: data } = useSelector(state => state.socket);
+  const { total } = useSelector(state => state.socket);
+  const { totalToday } = useSelector(state => state.socket);
+  React.useEffect(() => {
+    dispatch(wsConnectionStart());
+  }, [])
+  React.useEffect(() => {
+    if (location.pathname !== feedUrl)
+      dispatch(wsConnectionClosed())
+  }, [location, dispatch])
+
+  return (
+    data && <main className={styles.main}>
+      <section className={`${styles.feed} mt-10`}>
+        <p className={`text text_type_main-large  ${styles.title} mb-6 ml-2`} >Лента заказов</p>
+        <div className={styles.scroll}>
+          {data.map((element) => {
+            return (<OrderCard element={element} key={element._id} />)
+          })}
+        </div>
+      </section>
+      <section className={`${styles.board} mt-15`}>
+        <div className={styles.orders}>
+          <div className={styles.box}>
+            <p className='text text_type_main-medium mb-6'>Готовы:</p>
+            <div className={styles.container}>
+              <ul className={styles.done}>
+                {data.map((item, index) => {
+                  if (item.status === 'done' && index < 10)
+                    return (<li key={item._id} className={`${styles.doneId} text text_type_digits-default`}>{item.number}</li>)
+                })
+                }
+              </ul>
+              <ul className={styles.done}>
+                {data.map((item, index) => {
+                  if (item.status === 'done' && index < 20 && index >= 10)
+                    return (<li key={item._id} className={`${styles.doneId} text text_type_digits-default ml-2`}>{item.number}</li>)
+                })
+                }
+              </ul>
+
+            </div>
+          </div>
+          <div className={styles.work}>
+            <p className='text text_type_main-medium mb-6'>В работе:</p>
+            {data.map((item, index) => {
+              if (item.status !== 'done' && index < 10)
+                return (<li key={item._id} className={`${styles.workId} text text_type_digits-default`}>{item.number}</li>)
+            })
+            }
+          </div>
+        </div>
+        <li className={styles.completed}>
+          <p className='text text_type_main-medium mt-15'>Выполнено за все время:</p>
+          <p className={`${styles.text} text text_type_digits-large`}>{total}</p>
+        </li>
+        <li className={styles.completed}>
+          <p className='text text_type_main-medium mt-15'>Выполнено за сегодня:</p>
+          <p className={`${styles.text} text text_type_digits-large`}>{totalToday}</p>
+        </li>
+      </section>
+    </main >
+  );
 }

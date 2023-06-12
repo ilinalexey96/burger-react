@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './order-details.module.css';
-import image from '../../images/done.svg';
+import image from '../../images/done.png';
 import { useSelector } from "../../utils/hooks";
 
 export const OrderDetails = () => {
