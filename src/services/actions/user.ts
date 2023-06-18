@@ -1,7 +1,8 @@
-import { baseUrl } from "../../utils/api";
+import { baseUrl } from "../../utils/constants";
 import { request, refreshToken } from "../../utils/request";
 import { getCookie } from "../../utils/cookies";
-import { AppDispatch, AppThunk } from "../../utils/types";
+import { AppThunk } from "../../utils/types";
+import { deleteCookie } from "../../utils/cookies";
 
 export const GET_USER_INFO: 'GET_USER_INFO' = 'GET_USER_INFO';
 export const PATCH_USER_INFO: 'PATCH_USER_INFO' = 'PATCH_USER_INFO';
@@ -58,12 +59,14 @@ export const getUserInfoThunk: AppThunk = () => {
         }
       })
       .catch((err) => {
-        if (err === 'jwt expired') {
+        if (err) {
+          console.warn(err)
+          deleteCookie('access')
           refreshToken();
+          getUserInfoThunk();
         }
-        getUserInfoThunk();
       })
-      
+
   }
 }
 
@@ -92,6 +95,7 @@ export const patchUserInfoThunk: AppThunk = (email: string, name: string, passwo
       })
       .catch((err) => {
         if (err) {
+          deleteCookie('access')
           refreshToken()
         }
       })

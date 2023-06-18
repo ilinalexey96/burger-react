@@ -6,16 +6,14 @@ import { useDispatch, useSelector } from '../../utils/hooks';
 import { getPasswordSuccessThunk } from '../../services/actions/forgot-password';
 import { Redirect } from 'react-router-dom';
 import { useForm } from '../../utils/hooks';
-import { getCookie } from '../../utils/cookies';
 
 export const ForgotPasswordPage: FC = () => {
     const dispatch = useDispatch();
     const success: boolean = useSelector(state => state.recoverPassword.success);
-    const login: boolean = !!getCookie('access')
+    const { isLoggedIn: login } = useSelector(state => state.login)
     const { values, setValues } = useForm({ email: '' });
     const { email } = values;
     const inputRef = React.useRef<HTMLInputElement>(null);
-
 
     const onIconClick = () => {
         setTimeout(() => inputRef.current?.focus(), 0)
