@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import styles from './feed-details-page.module.css';
+import styles from './feed-details.module.css'
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useParams } from 'react-router-dom';
