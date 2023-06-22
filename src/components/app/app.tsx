@@ -14,7 +14,6 @@ import {
 } from '../../services/actions/ingredient-details';
 import { getOrderDetails } from '../../services/actions/order-details';
 import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
-import { IngredientPage } from '../../pages/ingredient-page/ingredient-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { RegisterPage } from '../../pages/register-page/register-page';
 import { ForgotPasswordPage } from '../../pages/forgot-password-page/forgot-password-page';
@@ -87,7 +86,7 @@ export const App: FC = () => {
             <FeedDetailsPage />
           </Route>
           <Route path={`/ingredients/:id`}>
-            <IngredientPage />
+            <IngredientDetails />
           </Route>
           <Route path='/login' exact>
             <LoginPage />

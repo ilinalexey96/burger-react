@@ -163,17 +163,9 @@ export const element = {
     success: true,
     user: {
       email: '@mail.ru',
-      name: 'Ivan'
+      name: 'asd'
     }
   }
-  //cypress
-  export const testIdList = [
-    "60d3b41abdacab0026a733c7",
-    "60d3b41abdacab0026a733cc",
-    "60d3b41abdacab0026a733cd",
-    "60d3b41abdacab0026a733cd",
-    "60d3b41abdacab0026a733cf"
-  ]
   
   export const ingredientSelector = '[class^=ingredient_ingredient]';
   export const constructorSelector = '[class^=burger-constructor_scroll]';
@@ -181,5 +173,5 @@ export const element = {
   export const orderButtonSelector = 'Оформить заказ';
   export const ingredientImageSelector = '[class^=ingredient_image]';
   export const closeButtonSelector = '[class^=modal_icon]';
-  export const email = '123123@123.ru';
-  export const password = '123123';
+  export const email = 'test-data@yandex.ru';
+  export const password = 'password';

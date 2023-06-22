@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import styles from './ingredient-details.module.css';
+import styles from './ingredient-details.module.css'
 import { useSelector } from "../../utils/hooks";
 import { useParams } from "react-router-dom";
 

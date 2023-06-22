@@ -1,7 +1,9 @@
 /* eslint-disable testing-library/await-async-utils */
+/* eslint-disable import/first */
+export { }
 import { baseUrl } from "../../src/utils/constants";
 
-import {testIdList,
+import {
   ingredientSelector,
   constructorSelector,
   constructorElement,
@@ -11,7 +13,6 @@ import {testIdList,
   email,
   password
 } from '../../src/utils/test-constants'
-export { }
 
 describe('service is available', () => {
   beforeEach(() => {
@@ -112,8 +113,8 @@ describe('service is available', () => {
       })
       .its('status')
       .should('eq', 200);
-    const token = Cypress.env('token');
-    const authorization = `${token}`;
+
+     const authorization = `${Cypress.env('token')}`;
 
     cy.get(ingredientSelector).eq(2)
       .drag(constructorSelector);
@@ -132,7 +133,7 @@ describe('service is available', () => {
         authorization,
       },
       body: JSON.stringify({
-        ingredients: testIdList,
+        ingredients: ["643d69a5c3f7b9001cfa093d", "643d69a5c3f7b9001cfa0943"],
       })
     })
       .then((response) => {
