@@ -27,8 +27,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test:cypress": "cypress open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
+  "homepage": "https://ilinalexey96.github.io/burger-react/",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -48,13 +52,17 @@
     ]
   },
   "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.2.2",
     "@reduxjs/toolkit": "^1.8.6",
     "@testing-library/react": "^13.4.0",
     "@types/react-router-dom": "^5.3.3",
     "cypress": "^11.2.0",
-    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-cypress": "^2.13.3",
     "fetch-mock": "^9.11.0",
+    "gh-pages": "^5.0.0",
+    "jest": "^27.5.1",
     "react-router-dom": "^5.2.1",
+    "react-test-renderer": "^18.2.0",
     "redux-mock-store": "^1.5.4"
   }
 }

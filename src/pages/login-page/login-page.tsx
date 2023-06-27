@@ -1,17 +1,24 @@
 import styles from './login-page.module.css';
 import React, { FC, FormEventHandler } from 'react';
 import { Input, Button, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { getLoginUser } from '../../services/actions/login';
 import { useDispatch, useSelector } from '../../utils/hooks';
 import { useForm } from '../../utils/hooks';
 
+type TLocation = ReturnType<typeof useLocation>;
+
+export type TUseLocation = {
+  [key: string]: string | null | TUseLocation | TLocation,
+};
+
 export const LoginPage: FC = () => {
+  const location = useLocation()
   const { isLoggedIn: login } = useSelector(state => state.login)
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
   const history = useHistory();
-  const { values, setValues } = useForm({ email: '', password: '' });
-  const { email, password } = values
+  const {values, setValues} = useForm({email: '', password: ''});
+  const {email, password} = values
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const user = values
@@ -19,9 +26,12 @@ export const LoginPage: FC = () => {
   }
   React.useEffect(() => {
     if (login) {
-      history.push('/')
+      history.push({
+        pathname: '/',
+        state: { from: location } 
+      })
     }
-  }, [history, login])
+  }, [history, login, location])
 
   const inputRef = React.useRef<HTMLInputElement>(null)
 
@@ -31,7 +41,7 @@ export const LoginPage: FC = () => {
         <h3 className={`${styles.title} text text_type_main-medium`}>Вход</h3>
         <div className='mt-6'>
           <Input type='email' placeholder={'E-mail'}
-            onChange={e => setValues({ ...values, email: e.target.value })}
+            onChange={e => setValues({...values, email: e.target.value})}
             value={email}
             name={'name'}
             error={false}
@@ -40,7 +50,7 @@ export const LoginPage: FC = () => {
         </div>
         <div className='mt-6 mb-6'>
           <PasswordInput
-            onChange={e => setValues({ ...values, password: e.target.value })}
+            onChange={e => setValues({...values, password: e.target.value})}
             placeholder={'Пароль'}
             value={password} />
         </div>

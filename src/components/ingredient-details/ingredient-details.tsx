@@ -1,13 +1,12 @@
 import React, { FC } from "react";
-import styles from './ingredient-details.module.css';
+import styles from './ingredient-details.module.css'
 import { useSelector } from "../../utils/hooks";
 import { useParams } from "react-router-dom";
 
 export const IngredientDetails: FC = () => {
   const { ingredientsList: ingredients } = useSelector(state => state.ingredients);
-  const params: { id: string } = useParams();
-  const ingredientId = params.id.split(':')[1];
-  const ingredient = ingredients.find(item => item._id === ingredientId);
+  const { id } = useParams<{ id: string }>();
+  const ingredient = ingredients.find(item => item._id === id);
 
   return (
     <>

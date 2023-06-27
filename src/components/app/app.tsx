@@ -14,7 +14,6 @@ import {
 } from '../../services/actions/ingredient-details';
 import { getOrderDetails } from '../../services/actions/order-details';
 import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
-import { IngredientPage } from '../../pages/ingredient-page/ingredient-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { RegisterPage } from '../../pages/register-page/register-page';
 import { ForgotPasswordPage } from '../../pages/forgot-password-page/forgot-password-page';
@@ -27,7 +26,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { deleteOrder } from '../../services/actions/order-details';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { FeedPage } from '../../pages/feed-page/feed-page';
-import { FeedDetails } from '../../pages/feed-details/feed-details';
+import { FeedDetailsPage } from '../../pages/feed-details/feed-details';
 import { ProfileOrderInfo } from '../../pages/profile-order-info/profile-order-info';
 import { ProfileOrders } from '../../pages/profile-orders/profile-orders';
 
@@ -37,7 +36,7 @@ export type TUseLocation = {
   [key: string]: string | null | TUseLocation | TLocation,
 };
 
-export const App: FC = () => {
+export const App: FC = () => {  
 
   const { isLoggedIn: login } = useSelector(state => state.login)
   const location = useLocation<TUseLocation>();
@@ -75,7 +74,6 @@ export const App: FC = () => {
     }
   }, [dispatch, history, login, idList])
 
-
   return (
     <DndProvider backend={HTML5Backend}>
       {ingredients && <div className="App">
@@ -85,10 +83,10 @@ export const App: FC = () => {
             <FeedPage />
           </Route>
           <Route path={`/feed/:id`}>
-            <FeedDetails />
+            <FeedDetailsPage />
           </Route>
           <Route path={`/ingredients/:id`}>
-            <IngredientPage />
+            <IngredientDetails />
           </Route>
           <Route path='/login' exact>
             <LoginPage />
@@ -129,15 +127,13 @@ export const App: FC = () => {
           </Route>}
         {background &&
           <Route path={`/feed/:id`}>
-
             <Modal onClick={closeModal} onClose={closeModal} >
-              <FeedDetails />
+              <FeedDetailsPage />
             </Modal>
           </Route>
         }
         {background &&
           <Route path={'/profile/orders/:id'}>
-
             <Modal onClick={closeModal} onClose={closeModal} >
               <ProfileOrderInfo />
             </Modal>

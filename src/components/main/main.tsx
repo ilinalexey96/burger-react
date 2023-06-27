@@ -12,7 +12,7 @@ type TMain = {
 }
 
 export const Main: FC<TMain> = ({
-
+ 
   handleButtonClick }) => {
 
   const { constructorList: data } = useSelector(state => state.constructorList);
